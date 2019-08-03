@@ -1,16 +1,30 @@
 package com.example.demo;
 
+import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 //@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 public class MultiTanancyDemoAppApplication {
 
+    private static ConfigurableApplicationContext context;
+    
 	public static void main(String[] args) {
-		SpringApplication.run(MultiTanancyDemoAppApplication.class, args);
+		context=SpringApplication.run(MultiTanancyDemoAppApplication.class, args);
+	}
+
+	public static void restart() {
+		ApplicationArguments args = context.getBean(ApplicationArguments.class);
+
+		Thread thread = new Thread(() -> {
+			context.close();
+			context = SpringApplication.run(MultiTanancyDemoAppApplication.class, args.getSourceArgs());
+		});
+
+		thread.setDaemon(false);
+		thread.start();
 	}
 
 }

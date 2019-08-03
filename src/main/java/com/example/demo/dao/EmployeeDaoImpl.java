@@ -23,12 +23,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return entityManager.unwrap(Session.class);
 	}
 	
-	@Qualifier("jdbcHCLService")
-	@Autowired
-	JdbcTemplate jdbcTemplate;
-	public Integer getEmpCount() {
-		return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM Employee", Integer.class);
-	}
+//	@Qualifier("jdbcHCLService")
+//	@Autowired
+//	JdbcTemplate jdbcTemplate;
+//	public Integer getEmpCount() {
+//		return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM Employee", Integer.class);
+//	}
 	
 	
 
@@ -56,6 +56,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Integer getEmpCount() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

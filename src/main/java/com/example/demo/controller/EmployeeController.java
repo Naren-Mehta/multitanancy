@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +19,27 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
-	
-	
+
 	@GetMapping("/employeeList")
-	public List<Employee> getEmployeeList(){
-		
-		List<Employee> employeeList= employeeService.employeeList();
+	public List<Employee> getEmployeeList() {
+
+		String name = "quinnox.com";
+
+		/*
+		 * try { if (name.contentEquals("quinnox.com")) { } } catch (IOException e) {
+		 * e.printStackTrace(); } catch (SQLException e) { e.printStackTrace(); }
+		 */
+
+		List<Employee> employeeList = employeeService.employeeList();
 		return employeeList;
-		
-	} 
-	
+
+	}
+
 	@GetMapping("/employeecount")
-	public Integer getTotalCount(){
-		
-		Integer count= employeeService.getTotalEmployeeCount();
+	public Integer getTotalCount() {
+
+		Integer count = employeeService.getTotalEmployeeCount();
 		return count;
-	} 
-	
+	}
+
 }

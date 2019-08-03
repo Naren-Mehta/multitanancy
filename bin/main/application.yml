@@ -1,29 +1,25 @@
 spring:
   properties:
     hibernate:
-      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      dialect: org.hibernate.dialect.MariaDBDialect
       format_sql: true
   jpa:
-    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database-platform: org.hibernate.dialect.MariaDBDialect
     hibernate:
       ddl-auto: create
     show-sql: true
     
   application:
     name: database-app
-    
-
-    
-  dbhclservice: 
-    jdbc-url: "jdbc:mysql://localhost:3306/hcl_employee?createDatabaseIfNotExist=true&autoreconnect=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
+  
+  datasource:    url: jdbc:mysql://localhost:3306/default_tenant?createDatabaseIfNotExist=true
     password: "password"
     username: "root"
-    
-  dbquinnoxservice: 
-    jdbc-url: "jdbc:mysql://localhost:3306/quinnox_employee?createDatabaseIfNotExist=true&autoreconnect=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull"
-    password: "password"
-    username: "root"
-
 
 server:
   port: 8081
+  
+  
+hibernate:
+ multiTenancy=SCHEMA
+ multi_tenant_connection_provider=com.example.demo.config.SchemaMultiTenantConnectionProvider
