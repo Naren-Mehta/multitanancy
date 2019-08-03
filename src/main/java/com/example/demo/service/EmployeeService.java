@@ -13,5 +13,7 @@ public interface EmployeeService {
 	void save(Employee emp);
 	
 	void delete(Integer id);
+	
+	Integer getTotalEmployeeCount();
 
 }

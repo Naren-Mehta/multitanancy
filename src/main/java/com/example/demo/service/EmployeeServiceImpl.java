@@ -40,6 +40,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 		
 	}
 
+	@Override
+	public Integer getTotalEmployeeCount() {
+		return employeeDao.getEmpCount();
+	}
+
 	
 	
 }

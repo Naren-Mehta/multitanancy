@@ -7,7 +7,7 @@ import com.example.demo.entity.Employee;
 public interface EmployeeDao {
 	
 		List<Employee> employeeList();	
-		
+		Integer getEmpCount();
 		Employee getEmployee(Integer id);
 		
 		void save(Employee emp);

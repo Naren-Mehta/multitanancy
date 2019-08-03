@@ -5,9 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Employee;
@@ -21,6 +22,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	private Session getSession() {
 		return entityManager.unwrap(Session.class);
 	}
+	
+	@Qualifier("jdbcHCLService")
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	public Integer getEmpCount() {
+		return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM Employee", Integer.class);
+	}
+	
+	
 
 	@Override
 	public List<Employee> employeeList() {

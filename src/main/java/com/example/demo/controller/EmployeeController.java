@@ -26,4 +26,11 @@ public class EmployeeController {
 		
 	} 
 	
+	@GetMapping("/employeecount")
+	public Integer getTotalCount(){
+		
+		Integer count= employeeService.getTotalEmployeeCount();
+		return count;
+	} 
+	
 }
