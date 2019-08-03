@@ -65,17 +65,11 @@ public class MultitenantConfiguration {
 		// It needs a default database to connect to.
 		// Make sure that the default database is actually an empty tenant database.
 		// Don't use that for a regular tenant if you want things to be safe!
-		
-		TenantContext.setCurrentTenant("quinnox");
-		
 		MultitenantDataSource dataSource = new MultitenantDataSource();
 		dataSource.setDefaultTargetDataSource(defaultDataSource());
 		dataSource.setTargetDataSources(resolvedDataSources);
-
 		// Call this to finalize the initialization of the data source.
 		dataSource.afterPropertiesSet();
-		
-		System.out.println("===="+dataSource.determineCurrentLookupKey());
 		return dataSource;
 	}
 
