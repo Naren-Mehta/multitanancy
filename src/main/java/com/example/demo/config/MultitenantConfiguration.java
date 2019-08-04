@@ -16,6 +16,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 @Configuration
 public class MultitenantConfiguration {
@@ -37,7 +39,7 @@ public class MultitenantConfiguration {
 		URL url = loader.getResource("tenants");
 		String path = url.getPath();
 		File[] files = new File(path).listFiles();
-
+		
 		for (File propertyFile : files) {
 			Properties tenantProperties = new Properties();
 			DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create(this.getClass().getClassLoader());
@@ -72,6 +74,7 @@ public class MultitenantConfiguration {
 		dataSource.afterPropertiesSet();
 		return dataSource;
 	}
+
 
 	private DataSource defaultDataSource() {
 
